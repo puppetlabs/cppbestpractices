@@ -33,7 +33,7 @@
   - [Potential Tools](04-Rants.md#potential-tools)
     - [Dynamic Analysis](04-Rants.md#dynamic-analysis)
     - [STL debug support in GDB](04-Rants.md#stl-debug-support-in-gdb)
-    - [cling](04-Rants.md#cling)
+    - [cling](04-Rants.md#cling---an-interactive-c-interpreter)
   - [Libraries](04-Rants.md#libraries)
     - [Selection Criteria](04-Rants.md#selection-criteria)
     - [Using libraries in a project](04-Rants.md#using-libraries-in-a-project)
