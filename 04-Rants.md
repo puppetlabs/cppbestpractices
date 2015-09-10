@@ -65,3 +65,4 @@ Most large C++ presences end up with a monolithic repository for dependencies an
 - [coroutines](https://github.com/maciekgajewski/coroutines) - go-style coroutines and channels
 - [HAMT](https://github.com/chaelim/HAMT) - hash array-mapped trie
 - [Mach7](https://github.com/solodon4/Mach7) - fast pattern-matching (often faster than the Visitor pattern)
+- [RapidCheck](https://github.com/emil-e/rapidcheck) - generative property-based testing for C++
