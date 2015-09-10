@@ -122,6 +122,10 @@ An option parser supporting chained execution parsing, where parsing depends on 
 
 #### [libssh](http://www.libssh.org/)
 
+#### [websocketpp](https://github.com/zaphoyd/websocketpp)
+
+#### [Valijson](https://github.com/tristanpenman/valijson)
+
 ### [cpp-project-template](https://github.com/puppetlabs/cpp-project-template)
 
 We’ve started a C++ project template you can derive new projects from, based around having a command-line executable and an associated dynamic library that can be linked into other programs. It includes things like
