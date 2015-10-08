@@ -11,7 +11,7 @@
 We generally follow the STL/Boost style conventions to avoid style clashing with core libraries. That means
 
 - Use snake_case classes, types, functions, and variables.
-- Use _name or name_ for private variables in classes/structs.
+- Use \_name or name\_ for private variables in classes/structs.
 - Use (4) spaces rather than tabs.
 
 Other style guidelines
