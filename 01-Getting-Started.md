@@ -29,7 +29,7 @@ Most likely you know of C++. We use a particular style of C++ referred to as mod
 
 We use all of C++11 except for std::regex, as GCC 4.8 doesn’t support it. Once we update our tooling to use a newer version of GCC, we’ll likely bump our language support to C++14.
 
-We also use [CMake](http://www.cmake.org/) for our project build system - usually to generate Makefiles that work for your target platform - so you’ll some understanding of how it works is helpful.
+We also use [CMake](http://www.cmake.org/) for our project build system - usually to generate Makefiles that work for your target platform - so having some understanding of how it works is helpful.
 
 ## The C++ Language
 
