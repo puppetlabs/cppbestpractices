@@ -150,7 +150,7 @@ TODO: We plan to add infrastructure for generating documentation using Doxygen a
 
 ### [Vanagon](https://github.com/puppetlabs/vanagon)
 
-Vanagon is a packaging tool to build a single package out of a project, which can itself contain one or more components. It’s used by Release Engineering for building native code projects, including [Puppet Agent](https://github.com/puppetlabs/puppet-agent) and a number of the libraries and tools mentioned above for [pl-build-tools](https://github.com/puppetlabs/pl-build-tools-vanagon).
+Vanagon is a packaging tool to build a single package out of a project, which can itself contain one or more components. It’s used by Release Engineering for building native code projects, including [Puppet Agent](https://github.com/puppetlabs/puppet-agent) and a number of the libraries and tools mentioned above for [pl-build-tools](https://github.com/puppetlabs/pl-build-tools-vanagon) (both are expected to be open-sourced in the future).
 
 Vanagon contains the `build` command for generating a package. It also contains the `devkit` command for populating a build environment and building a project on a target platform, without completing packaging and tearing the machine down, allowing easier testing or reproduction of build problems on specific platforms.
 
