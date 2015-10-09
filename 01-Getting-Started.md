@@ -27,7 +27,11 @@
 
 Most likely you know of C++. We use a particular style of C++ referred to as modern C++, based on patterns enabled by new features in C++11. The Style Guide and FAQ will cover many of these patterns and hopefully provide simple, safe building blocks for programming in C++. For those who learned C++ before C++11, there are a number of patterns that we encourage versus what you’re used to, as they tend to produce fewer errors and result in safer code.
 
-We use all of C++11 except for std::regex, as GCC 4.8 doesn’t support it. Once we update our tooling to use a newer version of GCC, we’ll likely bump our language support to C++14.
+We use all of C++11 except for:
+- std::regex, as GCC 4.8 doesn’t support it
+- std::thread, as GCC 4.8 on AIX doesn't support it, and the mingw support is experimental
+
+Once we update our tooling to use a newer version of GCC, we’ll likely bump our language support to C++14.
 
 We also use [CMake](http://www.cmake.org/) for our project build system - usually to generate Makefiles that work for your target platform - so having some understanding of how it works is helpful.
 
