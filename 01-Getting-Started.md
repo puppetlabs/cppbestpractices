@@ -35,8 +35,6 @@ We also use [CMake](http://www.cmake.org/) for our project build system - usuall
 
 ### Study Guide
 
-A [study guide](https://docs.google.com/a/puppetlabs.com/document/d/1DSw02LAXfIwcXJ0paF1rPgmJyCauJcaRR9dU4Wg6wfc/edit?usp=sharing) was started by Will Hopper, and is a good place to collaborate on learning the C++ language. The C++ HipChat channel and [cpp-discuss mailing list](https://groups.google.com/a/puppetlabs.com/forum/#!forum/cpp-discuss) are happy to answer questions and help out as well.
-
 If you want to dive right in, [C++ Koans](https://github.com/torbjoernk/CppKoans) and [Exercism C++ Exercises](https://github.com/exercism/xcpp/blob/master/SETUP.md) may be useful, as well as the reference links below.
 
 ### Learning References
