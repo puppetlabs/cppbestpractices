@@ -86,7 +86,7 @@ A list of other libraries that may be useful is maintained at http://en.cpprefer
 
 Boost comes with many sub-components. Currently our C++ toolchain only builds out a few of them. We’re evaluating building several more so that in the future more options are available to developers.
 
-As of the Ankeny timeframe (Q3 2015) Boost support is at 1.58 and has the following compiled libraries:
+Boost support for packaging is at 1.57 and has the following compiled libraries:
 `chrono, date_time, filesystem, locale, log, program_options, random, regex, system, thread`
 
 Boost also contains a number of header-only libraries that are also available. See the Boost documentation for all the details.
