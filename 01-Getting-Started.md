@@ -82,6 +82,11 @@ Libraries approved by RelEng that are currently in use. Most libraries support U
 
 A list of other libraries that may be useful is maintained at http://en.cppreference.com/w/cpp/links/libs. New libraries must be approved by RelEng.
 
+Libraries we use are organized by a few rules:
+- Header-only libraries are vendored into a project. If they seem generally useful, add them as components of Leatherman. [rapidjson](https://github.com/puppetlabs/leatherman/blob/master/rapidjson/CMakeLists.txt) is a useful example of how to do that.
+- Statically-linked libraries will be built and packaged, to be hosted on platform-specific packaging feeds (Apt, Rpm, Nuget). The pipelines for building these are managed by RelEng. Project dependencies are then made build-time dependencies in Vanagon projects.
+- Dynamically-linked libraries are built and packaged with the Vanagon project they will be shipped with.
+
 #### [Boost](http://www.boost.org/)
 
 Boost comes with many sub-components. Currently our C++ toolchain only builds out a few of them. We’re evaluating building several more so that in the future more options are available to developers.
