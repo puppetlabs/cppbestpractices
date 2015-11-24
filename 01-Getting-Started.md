@@ -69,7 +69,7 @@ Visual Studio compatibility isn’t guaranteed in our projects due to bugs in Vi
 Our current release pipeline uses
 - CMake 3.2.2
 - Apple LLVM 6.1.0 (Clang 3.6) on Mac OS X
-- MinGW GCC 4.8.3 with win32 threads (Facter) or pthreads (Cthun) on Windows, using Structured Exception Handling (SEH) for 64-bit exception handling and Set-jump-long-jump (SJLJ) for 32-bit
+- MinGW GCC 4.8.3 with win32 threads on Windows, using Structured Exception Handling (SEH) for 64-bit exception handling and Set-jump-long-jump (SJLJ) for 32-bit (libpthread dropped because the library was buggy)
 - GCC 4.8.2 on all other platforms
 
 JetBrains provides an IDE, [CLion](https://www.jetbrains.com/clion/), that some of us find useful. For vim/emacs users, you may want to look at [ycmd](https://github.com/Valloric/ycmd) for C++ code completion based on Clang. On Mac, Xcode can also be used for building and debugging by preparing a project with `cmake -G Xcode …`.
