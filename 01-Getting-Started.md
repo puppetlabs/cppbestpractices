@@ -141,12 +141,11 @@ We’ve started a C++ project template you can derive new projects from, based a
 - [Travis CI](https://travis-ci.org/) configuration for Linux CI on Pull Requests
 - Code Coverage metrics via [coveralls.io](https://coveralls.io/)
 - Dummy Rake tasks for acceptance, to fit a standard [Jenkins CI](http://jenkins-ci.org/) template
+- Documentation via Doxygen
 
 It exemplifies a common organizational structure we use across C++ projects.
 
 We use ‘.cc’ for C++ source, ‘.hpp’ for C++ header files, and ‘.c’ for pure C headers.
-
-TODO: We plan to add infrastructure for generating documentation using Doxygen as well.
 
 ### [Vanagon](https://github.com/puppetlabs/vanagon)
 
