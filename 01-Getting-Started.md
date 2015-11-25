@@ -11,15 +11,17 @@
     - [Tooling](#tooling)
   - [Starting a Project](#starting-a-project)
     - [Libraries](#libraries)
-      - [[Boost](http://www.boost.org/)](#boosthttpwwwboostorg)
-      - [[Leatherman](https://github.com/puppetlabs/leatherman)](#leathermanhttpsgithubcompuppetlabsleatherman)
-      - [[horsewhisperer](https://github.com/puppetlabs/horsewhisperer)](#horsewhispererhttpsgithubcompuppetlabshorsewhisperer)
-      - [[yaml-cpp](https://github.com/jbeder/yaml-cpp)](#yaml-cpphttpsgithubcomjbederyaml-cpp)
-      - [[INI](https://github.com/benhoyt/inih)](#inihttpsgithubcombenhoytinih)
-      - [[OpenSSL](https://www.openssl.org/)](#opensslhttpswwwopensslorg)
-      - [[libssh](http://www.libssh.org/)](#libsshhttpwwwlibsshorg)
-    - [[cpp-project-template](https://github.com/puppetlabs/cpp-project-template)](#cpp-project-templatehttpsgithubcompuppetlabscpp-project-template)
-    - [[Vanagon](https://github.com/puppetlabs/vanagon)](#vanagonhttpsgithubcompuppetlabsvanagon)
+      - [Boost [∞](http://www.boost.org/)](#boost-)
+      - [Leatherman [∞](https://github.com/puppetlabs/leatherman)](#leatherman-)
+      - [horsewhisperer [∞](https://github.com/puppetlabs/horsewhisperer)](#horsewhisperer-)
+      - [yaml-cpp [∞](https://github.com/jbeder/yaml-cpp)](#yaml-cpp-)
+      - [INI [∞](https://github.com/benhoyt/inih)](#ini-)
+      - [OpenSSL [∞](https://www.openssl.org/)](#openssl-)
+      - [libssh [∞](http://www.libssh.org/)](#libssh-)
+      - [websocketpp [∞](https://github.com/zaphoyd/websocketpp)](#websocketpp-)
+      - [Valijson [∞](https://github.com/tristanpenman/valijson)](#valijson-)
+    - [cpp-project-template [∞](https://github.com/puppetlabs/cpp-project-template)](#cpp-project-template-)
+    - [Vanagon [∞](https://github.com/puppetlabs/vanagon)](#vanagon-)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -87,7 +89,7 @@ Libraries we use are organized by a few rules:
 - Statically-linked libraries will be built and packaged, to be hosted on platform-specific packaging feeds (Apt, Rpm, Nuget). The pipelines for building these are managed by RelEng. Project dependencies are then made build-time dependencies in Vanagon projects.
 - Dynamically-linked libraries are built and packaged with the Vanagon project they will be shipped with.
 
-#### [Boost](http://www.boost.org/)
+#### Boost [∞](http://www.boost.org/)
 
 Boost comes with many sub-components. Currently our C++ toolchain only builds out a few of them. We’re evaluating building several more so that in the future more options are available to developers.
 
@@ -100,7 +102,7 @@ Documentation for Boost isn’t the greatest, but it has a lot of useful utiliti
 
 On Mac OS X and up-to-date Linux platforms you can get a recent build of [Boost](http://sourceforge.net/projects/boost/files/latest/download) using your package manager. On Windows build it from source in PowerShell with `.\bootstrap mingw && .\b2 toolset=gcc --build-type=minimal install --prefix=$install boost.locale.iconv=off`, or pull a [pre-built](https://s3.amazonaws.com/kylo-pl-bucket/boost_1_57_0-x86_64_mingw-w64_4.8.3_win32_seh.7z) package built with [MinGW-w64 4.8.3](https://www.myget.org/F/puppetlabs/api/v2/package/mingw-w64/4.8.3). C++ compilers generally require you build with an ABI-compatible compiler, so if you use the pre-built package you should also use that compiler.
 
-#### [Leatherman](https://github.com/puppetlabs/leatherman)
+#### Leatherman [∞](https://github.com/puppetlabs/leatherman)
 
 We maintain a collection of libraries we’ve written that are useful to share across projects, or header-only libraries we’ve vendored to make available to those projects. Please add to this if you find yourself developing tools that would be useful to others. It covers a number of things:
 
@@ -117,23 +119,23 @@ We maintain a collection of libraries we’ve written that are useful to share a
 - **util** - cross-platform environment manipulation, a simple regex helper, scoped system resources via RAII, and string and time utilities
 - **windows** - Windows-specific tools for accessing process and user info, the registry, WMI, and system errors
 
-#### [horsewhisperer](https://github.com/puppetlabs/horsewhisperer)
+#### horsewhisperer [∞](https://github.com/puppetlabs/horsewhisperer)
 
 An option parser supporting chained execution parsing, where parsing depends on what’s come before it. If [Boost.Program_options](http://www.boost.org/doc/libs/1_58_0/doc/html/program_options.html) doesn’t work for you, this might.
 
-#### [yaml-cpp](https://github.com/jbeder/yaml-cpp)
+#### yaml-cpp [∞](https://github.com/jbeder/yaml-cpp)
 
-#### [INI](https://github.com/benhoyt/inih)
+#### INI [∞](https://github.com/benhoyt/inih)
 
-#### [OpenSSL](https://www.openssl.org/)
+#### OpenSSL [∞](https://www.openssl.org/)
 
-#### [libssh](http://www.libssh.org/)
+#### libssh [∞](http://www.libssh.org/)
 
-#### [websocketpp](https://github.com/zaphoyd/websocketpp)
+#### websocketpp [∞](https://github.com/zaphoyd/websocketpp)
 
-#### [Valijson](https://github.com/tristanpenman/valijson)
+#### Valijson [∞](https://github.com/tristanpenman/valijson)
 
-### [cpp-project-template](https://github.com/puppetlabs/cpp-project-template)
+### cpp-project-template [∞](https://github.com/puppetlabs/cpp-project-template)
 
 We’ve started a C++ project template you can derive new projects from, based around having a command-line executable and an associated dynamic library that can be linked into other programs. It includes things like
 
@@ -152,11 +154,10 @@ It exemplifies a common organizational structure we use across C++ projects.
 
 We use ‘.cc’ for C++ source, ‘.hpp’ for C++ header files, and ‘.c’ for pure C headers.
 
-### [Vanagon](https://github.com/puppetlabs/vanagon)
+### Vanagon [∞](https://github.com/puppetlabs/vanagon)
 
 Vanagon is a packaging tool to build a single package out of a project, which can itself contain one or more components. It’s used by Release Engineering for building native code projects, including [Puppet Agent](https://github.com/puppetlabs/puppet-agent) and a number of the libraries and tools mentioned above for [pl-build-tools](https://github.com/puppetlabs/pl-build-tools-vanagon) (both are expected to be open-sourced in the future).
 
 Vanagon contains the `build` command for generating a package. It also contains the `devkit` command for populating a build environment and building a project on a target platform, without completing packaging and tearing the machine down, allowing easier testing or reproduction of build problems on specific platforms.
 
 TODO: We plan to add an example for the cpp-project-template. With a Jenkins pipeline?
-
