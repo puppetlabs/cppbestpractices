@@ -22,6 +22,17 @@
       - [Valijson [∞](https://github.com/tristanpenman/valijson)](#valijson-)
     - [cpp-project-template [∞](https://github.com/puppetlabs/cpp-project-template)](#cpp-project-template-)
     - [Vanagon [∞](https://github.com/puppetlabs/vanagon)](#vanagon-)
+    - [Cross-platform development](#cross-platform-development)
+      - [Development Environment](#development-environment)
+        - [Linux](#linux)
+        - [Mac OS X](#mac-os-x)
+        - [Windows](#windows)
+        - [Testing](#testing)
+      - [File Paths and System Calls](#file-paths-and-system-calls)
+      - [Unicode and UTF-8](#unicode-and-utf-8)
+        - [Handling Input/Output](#handling-inputoutput)
+        - [Accessing Files](#accessing-files)
+        - [Environment Variables](#environment-variables)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -161,3 +172,130 @@ Vanagon is a packaging tool to build a single package out of a project, which ca
 Vanagon contains the `build` command for generating a package. It also contains the `devkit` command for populating a build environment and building a project on a target platform, without completing packaging and tearing the machine down, allowing easier testing or reproduction of build problems on specific platforms.
 
 TODO: We plan to add an example for the cpp-project-template. With a Jenkins pipeline?
+
+### Cross-platform development
+
+Cross-platform development can bring several challenges. This section provides instruction for how to approach each of them.
+
+#### Development Environment
+
+The first hurdle is often getting a development environment setup. One route is to use [CLion](https://www.jetbrains.com/clion/) everywhere, which provides a common GCC or Clang workflow with CMake on all major platforms.
+
+##### Linux
+
+Using an OS that updates packages regularly will make setup easier; look at ArchLinux or a recent Fedora release. The following commands will setup a dev environment with Boost and libcurl.
+
+```
+# ArchLinux
+pacman -S make cmake gcc boost yaml-cpp curl git ruby
+# Fedora
+dnf install -y make cmake wget tar gcc-c++ boost-devel openssl-devel libcurl-devel git ruby
+```
+
+To setup [cpp-project-template](https://github.com/puppetlabs/cpp-project-template)
+
+```
+git clone --recursive https://github.com/puppetlabs/cpp-project-template
+mkdir -p cpp-project-template/build
+cd cpp-project-template/build
+cmake .. && make -j
+```
+
+##### Mac OS X
+
+Using [Homebrew](http://brew.sh/)
+
+```
+brew install cmake boost
+```
+
+Follow the steps above to setup [cpp-project-template](https://github.com/puppetlabs/cpp-project-template).
+
+##### Windows
+
+Using [Chocolatey](https://chocolatey.org/) and Powershell
+
+```
+choco install -source https://www.myget.org/F/puppetlabs -y 7zip.commandline cmake git.install mingw-w64 ruby
+# Restart the shell to get updated PATH
+
+$toolsDir = $pwd
+(New-Object net.webclient).DownloadFile("https://s3.amazonaws.com/kylo-pl-bucket/boost_1_58_0-x86_64_mingw-w64_4.8.3_win32_seh.7z", "${toolsDir}\boost.7z")
+7za x "${toolsDir}\boost.7z"
+(New-Object net.webclient).DownloadFile("https://s3.amazonaws.com/kylo-pl-bucket/curl-7.42.1-x86_64_mingw-w64_4.8.3_win32_seh.7z", "${toolsDir}\curl.7z")
+7za x "${toolsDir}\curl.7z"
+
+git clone --recursive https://github.com/puppetlabs/cpp-project-template
+mkdir -Path cpp-project-template/build
+cd cpp-project-template/build
+cmake -G "MinGW Makefiles" -DBOOST_STATIC=ON -DBOOST_ROOT="${toolsDir}\boost_1_58_0-x86_64_mingw-w64_4.8.3_win32_seh" -DCURL_STATIC=ON -DCMAKE_PREFIX_PATH="${toolsDir}\curl-7.42.1-x86_64_mingw-w64_4.8.3_win32_seh.7z" ..
+mingw32-make -j
+```
+
+TODO: Host Boost and other libraries on myget.org to install with chocolatey, and simplify CMAKE_PREFIX_PATH. Also use curl with openssl.
+
+##### Testing
+
+To run tests with verbose output, run `make test ARGS=-V` (or `mingw32-make test ARGS=-V` on Windows).
+
+#### File Paths and System Calls
+
+Obviously file paths on platforms differ. Refer to the [file_paths specification](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md).
+
+Assume POSIX functions aren't available on Windows, and prefer Boost or C++ standard library functions. If specific POSIX functionality is needed, an equivalent will be needed for Windows; such helpers are good candidates for a library in Leatherman.
+
+TODO: Add ways to get common paths on Windows.
+
+#### Unicode and UTF-8
+
+Windows chose UTF-16 as the default Unicode representation, and all system calls are based on that; C++ standard library functions only support ASCII or other fixed 8-bit encodings (such as [Latin-1](https://en.wikipedia.org/wiki/Windows-1252)). UNIX-based platforms generally support UTF-8 in system calls and the C++ standard library. `std::string` is just a byte container, so it safely holds UTF-8 characters; however when manipulating UTF-8 strings you should use a UTF-8 aware library such as [UTF8-CPP](http://utfcpp.sourceforge.net/) or Boost.Regex. Our practice is to represent strings as UTF-8 internally, and deal with conversion when text is read/written.
+
+TODO: Evaluate UTF8-CPP and put it on Library list.
+
+##### Handling Input/Output
+
+The [driver in cpp-project-template](https://github.com/puppetlabs/cpp-project-template/blob/master/exe/driver.cc.in) contains useful examples of handling input/output safely across platforms.
+
+```
+// Use Boost.Nowide args to ensure command-line arguments are UTF-8.
+// On Windows this accesses console arguments as UTF-16 and converts them to UTF-8.
+// This uses the RAII pattern to modify argc/argv in-place, and revert them when exiting scope.
+boost::nowide::args arg_utf8(argc, argv);
+
+// Use Boost.Nowide cout/cerr to correctly print UTF-8 characters.
+// On Windows this converts to UTF-16 before printing to the console.
+setup_logging(boost::nowide::cerr);
+boost::nowide::cout << "Hello!" << std::endl;
+
+// Use Boost.Nowide cin to correctly read UTF-8 characters.
+// On Windows this reads using a UTF-16 system call and converts to UTF-8.
+std::string input;
+boost::nowide::cin >> input;
+```
+
+Boost.Nowide's cout/cerr implementations come with the caveat that they aren't header-only, so if Boost.Nowide is statically linked into multiple shared libraries, input and output must be manually synchronized between those libraries.
+
+##### Accessing Files
+
+[Leatherman](#leathermanhttpsgithubcompuppetlabsleatherman) is designed around using UTF-8 everywhere. That principally involves the use of Boost.FileSystem and Boost.Nowide.
+
+[Leatherman's file_utils](https://github.com/puppetlabs/leatherman/blob/master/file_util/src) make use of Boost.Nowide's iostream wrappers for reading and writing files, and Boost.FileSystem for accessing and manipulating files and directories.
+
+```
+// Initialize boost filesystem's locale to a UTF-8 default.
+// Logging gets setup the same way via the default 2nd argument.
+#if (!defined(__sun) && !defined(_AIX)) || !defined(__GNUC__)
+    // Locale support in GCC on Solaris and AIX are busted, so skip it.
+    boost::filesystem::path::imbue(leatherman::locale::get_locale());
+#endif
+
+// Open a UTF-8 path for reading or writing.
+boost::nowide::fstream in("unicodeᐁfile");
+
+// Rename a UTF-8 file.
+boost::filesystem::rename("unicodeᐁfile", "unicode❄file");
+```
+
+##### Environment Variables
+
+Environment variables can also contain Unicode characters, and should use Boost.Nowide wrappers for `getenv` and `setenv` to ensure they are UTF-8 encoded.
