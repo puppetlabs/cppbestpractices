@@ -6,6 +6,7 @@
   - [The C++ Language](#the-c-language)
     - [Study Guide](#study-guide)
     - [Learning References](#learning-references)
+    - [Intermediate Knowledge](#intermediate-knowledge)
     - [Language References](#language-references)
     - [Community](#community)
     - [Tooling](#tooling)
