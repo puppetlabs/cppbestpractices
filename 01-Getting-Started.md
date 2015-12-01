@@ -56,14 +56,18 @@ If you want to dive right in, [C++ Koans](https://github.com/torbjoernk/CppKoans
 
 ### Learning References
 
+- [A Tour of C++](http://www.amazon.com/Tour-Depth-Series-Bjarne-Stroustrup/dp/0321958314)
+- [CMake Tutorial](http://www.cmake.org/cmake-tutorial/)
+
+### Intermediate Knowledge
+
 Many of these are available in our library.
 
-- [C++ Primer](http://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113/ref=sr_1_1?s=books&ie=UTF8&qid=1436562219&sr=1-1&keywords=C%2B%2B+primer)
-- [CMake Tutorial](http://www.cmake.org/cmake-tutorial/)
+- [C++ Primer](http://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113)
 - [The C++ Programming Language](http://www.amazon.com/The-Programming-Language-4th-Edition/dp/0321563840)
-- [Effective C++: 55 Specific ways to Improve your Programs and Design](http://www.amazon.com/dp/0321334876/ref=wl_it_dp_v_S_ttl?_encoding=UTF8&colid=2KPYNF30H25OC&coliid=I3ULKDNY4KHV3U)
-- [More Effective C++: 35 New Ways to Improve Your Programs and Designs](http://www.amazon.com/dp/020163371X/ref=wl_it_dp_v_nS_ttl?_encoding=UTF8&colid=2KPYNF30H25OC&coliid=I3QPYZRZY5RBNW)
-- [Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14](http://www.amazon.com/dp/1491903996/ref=wl_it_dp_v_nS_ttl?_encoding=UTF8&colid=2KPYNF30H25OC&coliid=I3GAZZ5GDEIXB2)
+- [Effective C++: 55 Specific ways to Improve your Programs and Design](http://www.amazon.com/dp/0321334876)
+- [More Effective C++: 35 New Ways to Improve Your Programs and Designs](http://www.amazon.com/dp/020163371X)
+- [Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14](http://www.amazon.com/dp/1491903996)
 
 ### Language References
 
