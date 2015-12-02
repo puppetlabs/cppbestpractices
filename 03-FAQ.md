@@ -3,7 +3,6 @@
 **Table of Contents**
 
 - [FAQ](#faq)
-  - [Q: How should I deal with Unicode?](#q-how-should-i-deal-with-unicode)
   - [Q: Writing loops](#q-writing-loops)
   - [Q: Variable modifiers](#q-variable-modifiers)
   - [Q: Arguments and return types in class methods](#q-arguments-and-return-types-in-class-methods)
@@ -15,17 +14,12 @@
 
 # FAQ
 
-## Q: How should I deal with Unicode?
-_A: Use UTF-8 everywhere unless dealing with interfaces that require otherwise. Use ICU for complex operations (and eventually develop a Leatherman library to make that easier)._
-
-The C++ standard library generally supports reading and writing files as UTF-8, except on Windows. To address that, use the nowide library from Leatherman when you need to parse command-line arguments or read/write files, including cout/cerr.
-
 ## Q: Writing loops
-_A: Prefer ranged-for, it avoids mistakes in boundary checks._
+_A: Prefer [ranged-for](http://en.cppreference.com/w/cpp/language/range-for), it avoids mistakes in boundary checks._
 
 `for (auto &&x : container) { … }`
 
-We use `auto &&`, referred to as perfect-forwarding, to have a reference to each object that doesn’t apply any implicit conversions.
+We use `auto &&`, often referred to as perfect-forwarding, to have a reference to each object that doesn’t apply any implicit conversions.
 
 If dealing with a structure that doesn’t support `begin(...)` and `end(...)`, or you want to use a slice of the container, you can use
 
@@ -70,12 +64,14 @@ _Return-by-pointer if initialization in the class is optional_
 This should be rare, but if the value may not be initialized return-by-pointer instead of return-by-reference.
 
 ## Q: How do I use polymorphic objects?
-_Use unique_ptr if you never expect to share ownership. Otherwise use shared_ptr (with weak_ptr to break cyclic dependencies, which are hopefully rare)._
+_Use [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) if you never expect to share ownership. Otherwise use [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) (with [weak_ptr](http://en.cppreference.com/w/cpp/memory/weak_ptr) to break cyclic dependencies, which are hopefully rare)._
 
-Beware that using shared_ptr for recursive objects (like a functional list object) can cause stack overflows, because the destructor calls are recursive. A loop like that in https://github.com/puppetlabs/cpp-hocon/pull/11 can be used to release objects without overflowing the stack.
+If the class needs to return new instances of itself extend the [enable_shared_from_this](http://en.cppreference.com/w/cpp/memory/enable_shared_from_this) class.
+
+Beware that using [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) for recursive objects (like a functional list object) can cause stack overflows, because the destructor calls are recursive. A loop like that in https://github.com/puppetlabs/cpp-hocon/pull/11 can be used to release objects without overflowing the stack.
 
 ## Q: How do I share ownership of an object between multiple classes/data structures?
-_A: shared_ptr via make_shared. Please avoid raw new/delete._
+_A: [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) via [make_shared](http://en.cppreference.com/w/cpp/memory/shared_ptr/make_shared). Please avoid raw new/delete._
 
 ## Q: When does it make sense to use new/delete?
-_A: Use new when initializing a unique_ptr (until make_unique in C++14) or creating an RAII wrapper class for interacting with a C API (consider unique_resource). Use delete when creating an RAII wrapper class for interacting with a C API._
+_A: Use new when initializing a [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) (until [make_unique](http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique) in C++14) or creating an RAII wrapper class for interacting with a C API (consider [scoped_resource](https://github.com/puppetlabs/leatherman/blob/master/util/inc/leatherman/util/scoped_resource.hpp)). Use delete when creating an RAII wrapper class for interacting with a C API._
