@@ -5,6 +5,7 @@
 - [Style Guide](#style-guide)
   - [Header Files](#header-files)
   - [Namespaces](#namespaces)
+  - [Exceptions vs Error-Handling](#exceptions-vs-error-handling)
   - [TODO: Still under development.](#todo-still-under-development)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -53,5 +54,17 @@ The effect of the example above is to create a namespace `x` within the namespac
 Avoid using namespace aliases in header files outside of a namespace, as this can have unbounded effects on other header files. Be cautious even doing so in a namespace, as namespaces can be shared across multiple header files.
 
 Prefer namespace aliasing in source files within the namespace as well.
+
+## Exceptions vs Error-Handling
+
+The debate of exceptions vs error-handling is long running. They can both fulfill the same function: returning whether an error occured and the context in which it happened. The trade-offs are
+- Errors must be specifically handled. If the failure needs to be handled further up, error-handling code gets verbose.
+- Exceptions can be more expensive.
+
+Read the Boost community's [answer](http://www.boost.org/community/error_handling.html). In practice, use error codes or optional return values when failure reasons are obvious or in performance-critical code. Otherwise use exceptions.
+
+Ensure exceptions don't propagate outside of a C interface; they're meant for language interop (e.g. Ruby), and you want to avoid the caller terminating if an exception is thrown within a library it's using. Provide other error handling instead.
+
+If error-handling becomes commonly used in places we want to return more context (i.e. a string), we should add a general error context class to Leatherman.
 
 ## TODO: Still under development.
