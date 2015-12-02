@@ -3,6 +3,8 @@
 **Table of Contents**
 
 - [Style Guide](#style-guide)
+  - [Namespaces](#namespaces)
+  - [TODO: Still under development.](#todo-still-under-development)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -29,4 +31,19 @@ Other style guidelines
   - A header file must include all the header files necessary to parse it.
   - A header file should have the bare minimum number of header files necessary to parse it. Prefer forward-declarations when possible, i.e. whenever you only need pointers/references to a class outside the std namespace<sup>[2](https://groups.google.com/forum/#!topic/comp.lang.c++.moderated/XBKFjGNquDM)</sup>.
 
-TODO: Still under development.
+## Namespaces
+
+Never put `using namespace x` in a header file; doing so causes the effect to be applied to every header file that's included after it is included, and to every source file that includes it. If you want a short-hand in a header file, use aliases (i.e. `namespace x = long_namespace_x`) inside of a namespace declared in that header file, as in
+
+```
+namespace foo {
+    namespace x = long_namespace_x;
+    x::widget process_widget(x::widget);
+}
+```
+
+Avoid using namespace aliases in header files outside of a namespace, as this can have unbounded effects on other header files. Be cautious even doing so in a namespace, as namespaces can be shared across multiple header files.
+
+Prefer namespace aliasing in source files within the namespace as well.
+
+## TODO: Still under development.
