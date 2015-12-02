@@ -5,8 +5,7 @@
 - [Getting Started Resources](#getting-started-resources)
   - [The C++ Language](#the-c-language)
     - [Study Guide](#study-guide)
-    - [Learning References](#learning-references)
-    - [Intermediate Knowledge](#intermediate-knowledge)
+    - [Practitioner Knowledge](#practitioner-knowledge)
     - [Language References](#language-references)
     - [Community](#community)
     - [Tooling](#tooling)
@@ -51,20 +50,19 @@ We also use [CMake](http://www.cmake.org/) for our project build system - usuall
 
 ## The C++ Language
 
+Many of the books below are available in our library.
+
 ### Study Guide
 
 If you want to dive right in, [C++ Koans](https://github.com/torbjoernk/CppKoans) and [Exercism C++ Exercises](https://github.com/exercism/xcpp/blob/master/SETUP.md) may be useful, as well as the reference links below.
 
-### Learning References
-
-- [A Tour of C++](http://www.amazon.com/Tour-Depth-Series-Bjarne-Stroustrup/dp/0321958314)
+- [LearnCpp Tutorials](http://www.learncpp.com/)
 - [CMake Tutorial](http://www.cmake.org/cmake-tutorial/)
-
-### Intermediate Knowledge
-
-Many of these are available in our library.
-
 - [C++ Primer](http://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113)
+- [A Tour of C++](http://www.amazon.com/Tour-Depth-Series-Bjarne-Stroustrup/dp/0321958314)
+
+### Practitioner Knowledge
+
 - [The C++ Programming Language](http://www.amazon.com/The-Programming-Language-4th-Edition/dp/0321563840)
 - [Effective C++: 55 Specific ways to Improve your Programs and Design](http://www.amazon.com/dp/0321334876)
 - [More Effective C++: 35 New Ways to Improve Your Programs and Designs](http://www.amazon.com/dp/020163371X)
