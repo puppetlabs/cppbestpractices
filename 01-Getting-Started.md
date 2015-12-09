@@ -164,7 +164,7 @@ We’ve started a C++ project template you can derive new projects from, based a
 - Dummy Rake tasks for acceptance, to fit a standard [Jenkins CI](http://jenkins-ci.org/) template
 - Documentation via Doxygen
 
-It exemplifies a common organizational structure we use across C++ projects.
+It exemplifies a common organizational structure we use across C++ projects, where executable and libraries inhabit separate sub-directories (`exe` and `lib`).
 
 We use ‘.cc’ for C++ source, ‘.hpp’ for C++ header files, and ‘.c’ for pure C headers.
 
