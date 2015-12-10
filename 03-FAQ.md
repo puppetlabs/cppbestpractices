@@ -17,13 +17,17 @@
 ## Q: Writing loops
 _A: Prefer [ranged-for](http://en.cppreference.com/w/cpp/language/range-for), it avoids mistakes in boundary checks._
 
-`for (auto &&x : container) { … }`
+In most cases you want to use
 
-We use `auto &&`, often referred to as perfect-forwarding, to have a reference to each object that doesn’t apply any implicit conversions.
+`for (auto &x : container) { … }`
+
+This prevents any copies, and will work most of the time; the compiler will tell you if it doesn't. If you want to ensure you don't modify the container, use
+
+`for (auto const& x : container) { … }`
 
 If dealing with a structure that doesn’t support `begin(...)` and `end(...)`, or you want to use a slice of the container, you can use
 
-`for (auto &&x : boost::make_iterator_range(begin, end)) { … }`
+`for (auto &x : boost::make_iterator_range(begin, end)) { … }`
 
 where `begin` and `end` are iterators or pointers.
 
