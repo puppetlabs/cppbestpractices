@@ -16,11 +16,6 @@
 
 # Rants
 
-Why you should avoid class hierarchies and use duck-typing.
-- [C++ Seasoning](https://channel9.msdn.com/Events/GoingNative/2013/Cpp-Seasoning)
-- [Inheritance is the Base Class of Evil](https://channel9.msdn.com/Events/GoingNative/2013/Inheritance-Is-The-Base-Class-of-Evil)
-- [Sean Parent Talks](https://github.com/sean-parent/sean-parent.github.io/wiki/Papers-and-Presentations)
-
 Use structs for plain-old-data types (POD), classes for OOP (which you should use sparingly). Prefer PODs.
 
 Re the [Google C++ style guide](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml): handy starting point, but don't have to drink all the koolaid.

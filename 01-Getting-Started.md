@@ -5,9 +5,11 @@
 - [Getting Started Resources](#getting-started-resources)
   - [The C++ Language](#the-c-language)
     - [Study Guide](#study-guide)
-    - [Practitioner Knowledge](#practitioner-knowledge)
     - [Language References](#language-references)
     - [Community](#community)
+    - [Practitioner Knowledge](#practitioner-knowledge)
+      - [Books](#books)
+      - [Blogs and Videos](#blogs-and-videos)
     - [Tooling](#tooling)
   - [Starting a Project](#starting-a-project)
     - [Libraries](#libraries)
@@ -54,28 +56,38 @@ Many of the books below are available in our library.
 
 ### Study Guide
 
-If you want to dive right in, [C++ Koans](https://github.com/torbjoernk/CppKoans) and [Exercism C++ Exercises](https://github.com/exercism/xcpp/blob/master/SETUP.md) may be useful, as well as the reference links below.
+Learn some basic CMake with [CMake Tutorial](http://www.cmake.org/cmake-tutorial/)
 
+Add some more complete instruction from one of
 - [LearnCpp Tutorials](http://www.learncpp.com/)
-- [CMake Tutorial](http://www.cmake.org/cmake-tutorial/)
-- [C++ Primer](http://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113)
-- [A Tour of C++](http://www.amazon.com/Tour-Depth-Series-Bjarne-Stroustrup/dp/0321958314)
+- [PluralSight C++ Fundamentals Course by Kate Gregory](http://app.pluralsight.com/courses/cpp-fundamentals) [Part 2](http://app.pluralsight.com/courses/cppfund2)
+- [A Tour of C++](http://www.amazon.com/Tour-Depth-Series-Bjarne-Stroustrup/dp/0321958314) - a little too succinct for some, but good if you have experience with `C`.
 
-### Practitioner Knowledge
-
-- [The C++ Programming Language](http://www.amazon.com/The-Programming-Language-4th-Edition/dp/0321563840)
-- [Effective C++: 55 Specific ways to Improve your Programs and Design](http://www.amazon.com/dp/0321334876)
-- [More Effective C++: 35 New Ways to Improve Your Programs and Designs](http://www.amazon.com/dp/020163371X)
-- [Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14](http://www.amazon.com/dp/1491903996)
+Work through some exercises from [Exercism C++ Exercises](https://github.com/exercism/xcpp/blob/master/SETUP.md) with the [C++ Primer](http://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113) or [The C++ Programming Language](http://www.amazon.com/The-Programming-Language-4th-Edition/dp/0321563840) at hand.
 
 ### Language References
 
-- [C++ Library Reference](http://en.cppreference.com/w/)
+- [C++ Language and Library Reference](http://en.cppreference.com/w/)
 - [CMake Documentation](http://www.cmake.org/documentation/)
 
 ### Community
 - [CppCon Conferences](http://cppcon.org/)
 - [Official Standard C++ Site](https://isocpp.org/)
+
+### Practitioner Knowledge
+
+#### Books
+- [Effective C++: 55 Specific ways to Improve your Programs and Design](http://www.amazon.com/dp/0321334876)
+- [More Effective C++: 35 New Ways to Improve Your Programs and Designs](http://www.amazon.com/dp/020163371X)
+- [Effective Modern C++: 42 Specific Ways to Improve Your Use of C++11 and C++14](http://www.amazon.com/dp/1491903996)
+
+#### Blogs and Videos
+- [Type Deduction and Why You Care - Scott Meyers](https://confluence.puppetlabs.com/pages/viewpage.action?pageId=52430319)
+- [Universal References in C++11 - Scott Meyers](https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers)
+- [C++ Seasoning - Sean Parent](https://channel9.msdn.com/Events/GoingNative/2013/Cpp-Seasoning)
+- [Inheritance is the Base Class of Evil - Sean Parent](https://channel9.msdn.com/Events/GoingNative/2013/Inheritance-Is-The-Base-Class-of-Evil)
+
+[Other material by Sean Parent](https://github.com/sean-parent/sean-parent.github.io/wiki/Papers-and-Presentations)
 
 ### Tooling
 A development environment on most platforms is pretty straight-forward, get Clang 3.5+ or GCC 4.8+. On Mac OS X, the system Clang from Xcode Command-Line Tools (required by Homebrew) is sufficient. On Windows, I recommend installing CMake and [MinGW-w64 via Chocolatey](https://chocolatey.org/packages/mingw).
