@@ -65,6 +65,8 @@ Add some more complete instruction from one of
 
 Work through some exercises from [Exercism C++ Exercises](https://github.com/exercism/xcpp/blob/master/SETUP.md) with the [C++ Primer](http://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113) or [The C++ Programming Language](http://www.amazon.com/The-Programming-Language-4th-Edition/dp/0321563840) at hand.
 
+Since the Puppet RAL is pretty familiar to many of us, it makes a useful example. Create a set of C++ classes representing the RAL, with the ability to print out a representation of them. Then create data structures to represent a catalog, including a relationship [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph). A basic example is included in [ral-example](ral-example).
+
 ### Language References
 
 - [C++ Language and Library Reference](http://en.cppreference.com/w/)
