@@ -214,8 +214,9 @@ To setup [cpp-project-template](https://github.com/puppetlabs/cpp-project-templa
 ```
 git clone https://github.com/puppetlabs/leatherman
 mkdir -p leatherman/build
-cd leatherman/build
+pushd leatherman/build
 cmake .. && make install -j
+popd
 
 git clone https://github.com/puppetlabs/cpp-project-template
 mkdir -p cpp-project-template/build
@@ -246,9 +247,10 @@ $N = 4
 
 git clone https://github.com/puppetlabs/leatherman
 mkdir -Path leatherman/build
-cd leatherman/build
+pushd leatherman/build
 cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="C:\tools\pl-build-tools" -DCMAKE_TOOLCHAIN_FILE="C:\tools\pl-build-tools\pl-build-toolchain.cmake" -DBOOST_STATIC=ON ..
 mingw32-make install -j${N}
+popd
 
 git clone https://github.com/puppetlabs/cpp-project-template
 mkdir -Path cpp-project-template/build
