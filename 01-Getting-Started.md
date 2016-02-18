@@ -249,14 +249,14 @@ git clone https://github.com/puppetlabs/leatherman
 mkdir -Path leatherman/build
 pushd leatherman/build
 cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="C:\tools\pl-build-tools" -DCMAKE_TOOLCHAIN_FILE="C:\tools\pl-build-tools\pl-build-toolchain.cmake" -DBOOST_STATIC=ON ..
-mingw32-make install -j${N}
+mingw32-make install -j ${N}
 popd
 
 git clone https://github.com/puppetlabs/cpp-project-template
 mkdir -Path cpp-project-template/build
 cd cpp-project-template/build
 cmake -G "MinGW Makefiles" -DCMAKE_TOOLCHAIN_FILE="C:\tools\pl-build-tools\pl-build-toolchain.cmake" -DBOOST_STATIC=ON ..
-mingw32-make -j${N}
+mingw32-make -j ${N}
 ```
 
 On Windows you want to limit the number of parallel processes, the example defaults to 4. These commands can be tweaked to work under Cygwin. In that case you want to use `PATH=/cygdrive/c/ProgramData/chocolatey/bin:/cygdrive/c/tools/mingw64/bin:/cygdrive/c/tools/pl-build-tools/bin cmake ...` to isolate the environment.
