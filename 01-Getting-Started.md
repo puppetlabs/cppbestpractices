@@ -212,7 +212,12 @@ dnf install -y make cmake wget tar gcc-c++ boost-devel openssl-devel libcurl-dev
 To setup [cpp-project-template](https://github.com/puppetlabs/cpp-project-template)
 
 ```
-git clone --recursive https://github.com/puppetlabs/cpp-project-template
+git clone https://github.com/puppetlabs/leatherman
+mkdir -p leatherman/build
+cd leatherman/build
+cmake .. && make install -j
+
+git clone https://github.com/puppetlabs/cpp-project-template
 mkdir -p cpp-project-template/build
 cd cpp-project-template/build
 cmake .. && make -j
@@ -233,23 +238,26 @@ Follow the steps above to setup [cpp-project-template](https://github.com/puppet
 Using [Chocolatey](https://chocolatey.org/) and Powershell
 
 ```
-choco install -source https://www.myget.org/F/puppetlabs -y 7zip.commandline cmake git.install mingw-w64 ruby
-# Restart the shell to get updated PATH
+choco install -source https://www.myget.org/F/puppetlabs -y 7zip.commandline cmake git.install mingw-w64 pl-boost-x64 pl-toolchain-x64 pl-zlib-x64 pl-openssl-x64 pl-curl-x64
 
-$toolsDir = $pwd
-(New-Object net.webclient).DownloadFile("https://s3.amazonaws.com/kylo-pl-bucket/boost_1_58_0-x86_64_mingw-w64_4.8.3_win32_seh.7z", "${toolsDir}\boost.7z")
-7za x "${toolsDir}\boost.7z"
-(New-Object net.webclient).DownloadFile("https://s3.amazonaws.com/kylo-pl-bucket/curl-7.42.1-x86_64_mingw-w64_4.8.3_win32_seh.7z", "${toolsDir}\curl.7z")
-7za x "${toolsDir}\curl.7z"
+# Update PATH to include GCC and DLLs (so executables can find them)
+$env:PATH = "C:\tools\mingw64\bin;C:\tools\pl-build-tools\bin;$env:PATH"
+$N = 4
 
-git clone --recursive https://github.com/puppetlabs/cpp-project-template
+git clone https://github.com/puppetlabs/leatherman
+mkdir -Path leatherman/build
+cd leatherman/build
+cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="C:\tools\pl-build-tools" -DCMAKE_TOOLCHAIN_FILE="C:\tools\pl-build-tools\pl-build-toolchain.cmake" -DBOOST_STATIC=ON ..
+mingw32-make install -j${N}
+
+git clone https://github.com/puppetlabs/cpp-project-template
 mkdir -Path cpp-project-template/build
 cd cpp-project-template/build
-cmake -G "MinGW Makefiles" -DBOOST_STATIC=ON -DBOOST_ROOT="${toolsDir}\boost_1_58_0-x86_64_mingw-w64_4.8.3_win32_seh" -DCURL_STATIC=ON -DCMAKE_PREFIX_PATH="${toolsDir}\curl-7.42.1-x86_64_mingw-w64_4.8.3_win32_seh.7z" ..
-mingw32-make -j
+cmake -G "MinGW Makefiles" -DCMAKE_TOOLCHAIN_FILE="C:\tools\pl-build-tools\pl-build-toolchain.cmake" -DBOOST_STATIC=ON ..
+mingw32-make -j${N}
 ```
 
-TODO: Host Boost and other libraries on myget.org to install with chocolatey, and simplify CMAKE_PREFIX_PATH. Also use curl with openssl.
+On Windows you want to limit the number of parallel processes, the example defaults to 4. These commands can be tweaked to work under Cygwin. In that case you want to use `PATH=/cygdrive/c/ProgramData/chocolatey/bin:/cygdrive/c/tools/mingw64/bin:/cygdrive/c/tools/pl-build-tools/bin cmake ...` to isolate the environment.
 
 ##### Testing
 
