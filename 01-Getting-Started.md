@@ -11,6 +11,9 @@
       - [Books](#books)
       - [Blogs and Videos](#blogs-and-videos)
     - [Tooling](#tooling)
+      - [CLion Config](#clion-config)
+        - [Use ccache](#use-ccache)
+        - [Configure Editor](#configure-editor)
   - [Starting a Project](#starting-a-project)
     - [Libraries](#libraries)
       - [Boost [∞](http://www.boost.org/)](#boost-)
@@ -103,6 +106,29 @@ Our current release pipeline uses
 - GCC 4.8.2 on all other platforms
 
 JetBrains provides an IDE, [CLion](https://www.jetbrains.com/clion/), that some of us find useful. For vim/emacs users, you may want to look at [ycmd](https://github.com/Valloric/ycmd) for C++ code completion based on Clang. On Mac, Xcode can also be used for building and debugging by preparing a project with `cmake -G Xcode …`.
+
+#### CLion Config
+
+Some suggested configuration to make your life easier.
+
+##### Use ccache
+
+```
+brew install ccache
+```
+
+In `CLion > Preferences`, in `Build, Execution, Deployment > CMake`, add to `Generation > CMake options`
+```
+-DCMAKE_C_COMPILER=/usr/local/opt/ccache/libexec/cc -DCMAKE_CXX_COMPILER=/usr/local/opt/ccache/libexec/c++
+```
+
+##### Configure Editor
+
+* __Enable Line Numbers__ `Editor > General > Appearance > Show line numbers`
+* __CMake Indentation__ `Editor > Code Style > CMake > Tabs and Indents > Continuation Indent = 4`
+* __C++ Indentation__ `Editor > Code Style > C++ > Tabs and Indents > Continuation Indent = 4`
+
+TODO: Export a CLion Settings that matches our cpplint configuration.
 
 ## Starting a Project
 
