@@ -35,3 +35,9 @@
     - [Selection Criteria](04-Rants.md#selection-criteria)
     - [Using libraries in a project](04-Rants.md#using-libraries-in-a-project)
     - [Interesting Candidates](04-Rants.md#interesting-candidates)
+
+## Maintenance
+
+Maintainers: Michael Smith <michael.smith@puppet.com>
+
+Tickets: Can be opened in Github Issues.
