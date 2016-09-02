@@ -34,6 +34,8 @@
         - [Windows](#windows)
         - [Testing](#testing)
       - [File Paths and System Calls](#file-paths-and-system-calls)
+    - [Internationalization (i18n)](#internationalization-i18n)
+      - [Localization](#localization)
       - [Unicode and UTF-8](#unicode-and-utf-8)
         - [Handling Input/Output](#handling-inputoutput)
         - [Accessing Files](#accessing-files)
@@ -298,6 +300,14 @@ Obviously file paths on platforms differ. Refer to the [file_paths specification
 Assume POSIX functions aren't available on Windows, and prefer Boost or C++ standard library functions. If specific POSIX functionality is needed, an equivalent will be needed for Windows; such helpers are good candidates for a library in Leatherman.
 
 TODO: Add ways to get common paths on Windows.
+
+### Internationalization (i18n)
+
+In light of today's global marketplace for software, internationalization support (abbreviated "i18n") is critical, and Puppet is making strides towards full i18n-compliance across all products. At a minimum, compliant projects must address localization of user-visible strings and provide correct handling of Unicode (UTF-8).
+
+#### Localization
+
+Leatherman provides support for marking localizable strings and generating and using message catalogs (.pot files) based on the `gettext` library. Please refer to the [`Leatherman documentation`](https://github.com/puppetlabs/leatherman#internationalization-i18n) for details.
 
 #### Unicode and UTF-8
 
