@@ -14,6 +14,7 @@
     - [cpp-project-template](01-Getting-Started.md#cpp-project-template)
     - [Vanagon](01-Getting-Started.md#vanagon)
     - [Cross-platform development](01-Getting-Started.md#cross-platform-development)
+    - [Internationalization (i18n)](01-Getting-Started.md#internationalization-i18n)
 - [Style Guide](02-Style-Guide.md#style-guide)
   - [Header Files](02-Style-Guide.md#header-files)
   - [Namespaces](02-Style-Guide.md#namespaces)
