@@ -79,3 +79,30 @@ _A: [shared_ptr](http://en.cppreference.com/w/cpp/memory/shared_ptr) via [make_s
 
 ## Q: When does it make sense to use new/delete?
 _A: Use new when initializing a [unique_ptr](http://en.cppreference.com/w/cpp/memory/unique_ptr) (until [make_unique](http://en.cppreference.com/w/cpp/memory/unique_ptr/make_unique) in C++14) or creating an RAII wrapper class for interacting with a C API (consider [scoped_resource](https://github.com/puppetlabs/leatherman/blob/master/util/inc/leatherman/util/scoped_resource.hpp)). Use delete when creating an RAII wrapper class for interacting with a C API._
+
+## Q: How does one implement subcommand options?
+_A: Boost::Program_options is the library Puppet has used to implement program options in
+general. Several groups have asked about how to implement subcommand options similar to how git
+operates, ex. `git branch --all`. It is possible to implement this with the Program_options library using the positional
+options functionality. Here are the steps._
+
+* Create an options_description for global_options as well
+  as each subcommand (ex. deploy_options, status_options).
+* The commandline arguments should be parsed
+  once for global_options as well as postional_options at location 1 and -1 to capture the subcommand
+  and the rest of the arguments after the subcommand. This parse should also allow_unregistered
+  options so that all of the subcommand options can pass through without error.
+* Parsed_options should then be stored in the variable map.
+* The subcommand_options can then be gathered using the collect_unrecognized function. 
+* Assuming these do exist, then the action must first be erased so as not to parse it as an option. 
+* Then the spcecific subcommand options (ex. deploy_options) should be parsed and stored in the
+  variable map. On this parse, unregistered options should not be allowed, so they will be found.
+* There should also be a parse for any subcommands which do not require options.
+
+_At this point, all options should be available in the variable map._
+
+_An example implementation is in [puppet-code](https://github.com/puppetlabs/puppet-code/blob/everett/exe/puppet-code.cc),
+easiest to trace through from the building of options and parse()-ing in main(). Most of this
+implementation came from [this stackoverflow
+answer](http://stackoverflow.com/questions/15541498/how-to-implement-subcommands-using-boost-program-options)._
+
