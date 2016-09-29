@@ -104,5 +104,7 @@ _At this point, all options should be available in the variable map._
 _An example implementation is in [puppet-code](https://github.com/puppetlabs/puppet-code/blob/everett/exe/puppet-code.cc),
 easiest to trace through from the building of options and parse()-ing in main(). Most of this
 implementation came from [this stackoverflow
-answer](http://stackoverflow.com/questions/15541498/how-to-implement-subcommands-using-boost-program-options)._
+answer](http://stackoverflow.com/questions/15541498/how-to-implement-subcommands-using-boost-program-options). The main 
+responder also has a [gist of a standalone example](https://gist.github.com/randomphrase/10801888), though it does make 
+use of Boost::Variant, which was not clear to me at first._
 
