@@ -9,6 +9,7 @@
   - [Q: How do I use polymorphic objects?](#q-how-do-i-use-polymorphic-objects)
   - [Q: How do I share ownership of an object between multiple classes/data structures?](#q-how-do-i-share-ownership-of-an-object-between-multiple-classesdata-structures)
   - [Q: When does it make sense to use new/delete?](#q-when-does-it-make-sense-to-use-newdelete)
+  - [Q: How does one implement subcommand options?](#q-how-does-one-implement-subcommand-options)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -95,7 +96,7 @@ options functionality. Here are the steps._
 * Parsed_options should then be stored in the variable map.
 * The subcommand_options can then be gathered using the collect_unrecognized function. 
 * Assuming these do exist, then the action must first be erased so as not to parse it as an option. 
-* Then the spcecific subcommand options (ex. deploy_options) should be parsed and stored in the
+* Then the specific subcommand options (ex. deploy_options) should be parsed and stored in the
   variable map. On this parse, unregistered options should not be allowed, so they will be found.
 * There should also be a parse for any subcommands which do not require options.
 
