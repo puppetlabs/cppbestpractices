@@ -11,6 +11,8 @@
       - [Books](#books)
       - [Blogs and Videos](#blogs-and-videos)
     - [Tooling](#tooling)
+      - [CMake Issues](#cmake-issues)
+        - [Include file order](#include-file-order)
       - [CLion Config](#clion-config)
         - [Use ccache](#use-ccache)
         - [Configure Editor](#configure-editor)
@@ -108,6 +110,14 @@ Our current release pipeline uses
 - GCC 4.8.2 on all other platforms
 
 JetBrains provides an IDE, [CLion](https://www.jetbrains.com/clion/), that some of us find useful. For vim/emacs users, you may want to look at [ycmd](https://github.com/Valloric/ycmd) for C++ code completion based on Clang. On Mac, Xcode can also be used for building and debugging by preparing a project with `cmake -G Xcode …`.
+
+#### CMake Issues
+
+Some issues you might run into with CMake.
+
+##### Include file order
+
+If system include files are included before other dependencies - particularly Leatherman - you can end up using unexpected versions of libraries. For example, a version of `rapidjson` installed to `/usr/local` could be included before the version vendored in Leatherman, causing compilation errors. This can be fixed by using `-DCMAKE_INCLUDE_DIRECTORIES_BEFORE=ON` when running CMake.
 
 #### CLion Config
 
